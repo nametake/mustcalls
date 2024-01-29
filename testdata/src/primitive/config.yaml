@@ -1,10 +1,2 @@
 ---
 rules:
-  - args:
-      - type: string
-  - args:
-      - type: int
-  - args:
-      - type: error
-    func_patterns:
-      - ^errorFn$
