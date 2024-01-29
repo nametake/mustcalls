@@ -3,6 +3,7 @@ package mustcalls
 import (
 	"go/ast"
 	"go/types"
+	"slices"
 
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
@@ -62,7 +63,7 @@ func run(pass *analysis.Pass) (any, error) {
 
 			recvName := recvName(signature)
 
-			args := newAstArgs(signature)
+			calledFuncs := newAstCalledFuncs(n)
 
 			for _, rule := range config.Rules {
 				isTargetFile, err := rule.IsTargetFile(fileName)
@@ -118,9 +119,16 @@ func run(pass *analysis.Pass) (any, error) {
 					continue
 				}
 
-				unmatchedRules := rule.Args.Match(args)
+				isSameName := slices.ContainsFunc(rule.Funcs, func(f *FuncRule) bool {
+					return f.Name == funcName
+				})
+				if isSameName {
+					continue
+				}
+
+				unmatchedRules := rule.Funcs.Match(calledFuncs)
 				if len(unmatchedRules) != 0 {
-					pass.Reportf(n.Pos(), unmatchedRules.ErrorMsg(n.Name.Name))
+					pass.Reportf(n.Pos(), unmatchedRules.ErrorMsg(funcName))
 				}
 			}
 		}

@@ -1,2 +1,4 @@
 ---
 rules:
+  - funcs:
+      - name: mustCall
