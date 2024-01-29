@@ -1,0 +1,25 @@
+---
+# Multiple rules can be configured. Each rule is independent.
+rules:
+  - calls:
+    # TODO
+
+    # These are the patterns for the functions targeted by the rule.
+    # Multiple patterns can be specified as a list.
+    # Patterns support regular expressions.
+    # Each pattern is an AND condition, and the list of patterns is an OR condition.
+    file_patterns: # File patterns.
+      - usecase/tenant_.*.go
+      - mysql/tenant_.*.go
+    ignore_file_patterns: # Patterns to ignore files.
+      - .*_gen.go
+    func_patterns: # Function name patterns.
+      - Get.*
+      - Update.*
+    ignore_func_patterns: # Patterns to ignore function names.
+      - ^New.*
+    recv_patterns: # Receiver patterns.
+      - ^Tenant.*Usecase$
+      - ^Tenant.*DB$
+    ignore_recv_patterns: # Patterns to ignore receivers.
+      - ^TenantDBDebug$
