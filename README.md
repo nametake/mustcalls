@@ -11,7 +11,7 @@ go install github.com/nametake/mustcalls/cmd/mustcalls@latest
 ## Usage
 
 ```console
-go vet -vettool=`which mustcalls` -mustargs.config=$(pwd)/config.yaml .
+go vet -vettool=`which mustcalls` -mustcalls.config=$(pwd)/config.yaml .
 ```
 
 ## Rule Definition
