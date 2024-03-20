@@ -1,0 +1,6 @@
+---
+rules:
+  - funcs:
+      - name: mustCall
+    ignore_file_patterns:
+      - ignore_.*\.go
