@@ -1,0 +1,6 @@
+---
+rules:
+  - funcs:
+      - name: mustCall
+    ignore_recv_patterns:
+      - ^Ignore.*
