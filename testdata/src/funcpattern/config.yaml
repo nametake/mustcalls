@@ -1,0 +1,6 @@
+---
+rules:
+  - funcs:
+      - name: mustCall
+    func_patterns:
+      - ^Target.*
