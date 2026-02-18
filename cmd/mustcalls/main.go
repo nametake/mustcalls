@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/nametake/mustcalls"
-	"golang.org/x/tools/go/analysis/unitchecker"
+	"golang.org/x/tools/go/analysis/singlechecker"
 )
 
-func main() { unitchecker.Main(mustcalls.Analyzer) }
+func main() { singlechecker.Main(mustcalls.Analyzer) }
